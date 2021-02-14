@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="content">
+    <h1 class="headerText">Welcome to the Room Booking !!!</h1>
+    <p>
+      <span>Click this button to see the booking list:</span> 
+      <button type="button" name="show" (click)="getBooking()">Show Booking</button>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="content">
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm)" >
+  Check-in
+  <br>
+  
+  <input autocomplete="" class="form-control" type="text" formControlName="checkin"  >
+  <br> Check-out
+  <br>
+  <input class="form-control" type="text" formControlName="checkout" >
+  <br> Room No
+  <br>
+  <input class="form-control" type="text" formControlName="roomid" >
+  <br>
+  <br>
+  <button class="btn btn-default"  type="submit" >Add Customer</button>
+  <div class="alert alert-success" >{{message}}</div>
+</form>
+</div></div>
+
+  
+
+<div *ngIf="bookings" class="table-center">
+  <table>
+    <thead>
+      <tr>
+        <th>Booking Id</th>
+        <th>Checkin time</th>
+        <th>checkout time</th>
+        <th>Room No</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let book of bookings'>
+        <td>{{book?.id}}</td>
+        <td>{{book?.checkin}}</td>
+        <td>{{book?.checkout}}</td>
+        <td>{{book?.roomid}}</td>
+        <button type="button" class="btn btn-danger mr-1" (click)="DeleteBooking(book.id)">Delete</button> 
+      </tr>
+    </tbody>
+  </table>
+</div>
